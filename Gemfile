@@ -43,12 +43,19 @@ gem "thruster", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
+  # Adds the dotenv-rails gem so Rails can read environment variables from .env files.
+  gem "dotenv-rails"
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  # Add these testing gems:
+  gem "rspec-rails"
+  gem "factory_bot_rails"
+  gem "shoulda-matchers"
 end
 
 group :development do
@@ -56,8 +63,17 @@ group :development do
   gem "web-console"
 end
 
+# Add this to the development and test group in Gemfile
+group :development, :test do
+  gem "dotenv-rails"
+  # ... other gems
+end
+
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+
+  # databse cleaner:
+  gem "database_cleaner-active_record"
 end
